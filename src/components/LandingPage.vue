@@ -538,6 +538,7 @@ export default {
 body {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   color: #e5e7eb;
+  overscroll-behavior: none;
 }
 
 .font-mono {
