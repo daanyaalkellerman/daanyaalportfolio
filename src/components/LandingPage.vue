@@ -366,7 +366,7 @@
                 <p class="text-gray-400 mb-4 sm:mb-6 text-base sm:text-lg">
                   {{ project.description }}
                 </p>
-                <div class="flex flex-wrap gap-2 sm:gap-3">
+                <!-- <div class="flex flex-wrap gap-2 sm:gap-3">
                   <span
                     class="px-3 py-1 sm:px-4 sm:py-2 bg-gray-700 text-primary rounded-lg text-xs sm:text-sm font-mono"
                     >Vue.js</span
@@ -379,7 +379,7 @@
                     class="px-3 py-1 sm:px-4 sm:py-2 bg-gray-700 text-primary rounded-lg text-xs sm:text-sm font-mono"
                     >Laravel</span
                   >
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
