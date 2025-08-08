@@ -122,7 +122,7 @@
                   <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 animate-text">Daanyaal Kellerman</span>
                 </h1>
                 <h2 class="text-xl sm:text-2xl text-gray-400 font-mono">
-                  &gt; Full-Stack Developer (React.js | Next.js | Knex.js)
+                  &gt; Full-Stack Developer
                 </h2>
                 <div class="flex items-center space-x-2">
                   <div class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></div>
