@@ -73,23 +73,30 @@
           </div>
         </div>
 
-        <!-- Hero Image Container -->
+        <!-- Hero Image with shimmer + fade + scale -->
         <div
-          class="relative perspective"
+          class="relative perspective overflow-hidden rounded-3xl"
           @mousemove="handleHeroMove"
           @mouseleave="resetHero"
         >
+          <div 
+            v-if="!heroLoaded" 
+            class="absolute inset-0 bg-gray-300 dark:bg-gray-800 animate-pulse rounded-3xl shadow-2xl"
+          ></div>
           <img
             ref="heroImage"
             src="/IMG_7706.png"
-            class="rounded-3xl shadow-2xl will-change-transform transition-transform duration-300 ease-out"
+            @load="heroLoaded = true"
+            :class="[
+              'rounded-3xl shadow-2xl will-change-transform transition-transform duration-700 ease-out',
+              heroLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
+            ]"
           />
         </div>
 
       </div>
     </section>
 
-    <!-- PROJECTS -->
     <!-- PROJECTS -->
     <section id="projects" class="py-40 border-t border-black/5 dark:border-white/5">
       <div class="max-w-7xl mx-auto px-6">
@@ -101,7 +108,7 @@
           </p>
         </div>
 
-        <!-- If projects exist -->
+        <!-- Projects -->
         <div v-if="projects.length > 0">
           <div
             v-for="(project, index) in projects"
@@ -144,16 +151,23 @@
               </div>
             </div>
 
-            <div class="overflow-hidden rounded-3xl group border border-black/5 dark:border-white/5">
+            <!-- Project Image with shimmer + fade + scale -->
+            <div class="relative overflow-hidden rounded-3xl group border border-black/5 dark:border-white/5 h-80">
+              <div 
+                v-if="!project.loaded" 
+                class="absolute inset-0 bg-gray-300 dark:bg-gray-800 animate-pulse"
+              ></div>
               <img
                 :src="project.image"
+                @load="project.loaded = true"
                 class="h-80 w-full object-cover rounded-3xl transform group-hover:scale-105 transition duration-700"
+                :class="project.loaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'"
               />
             </div>
           </div>
         </div>
 
-        <!-- If no projects -->
+        <!-- No projects -->
         <div v-else class="text-center py-40 reveal">
           <h4 class="text-4xl font-semibold mb-6 text-gray-500 dark:text-gray-400">
             Projects Coming Soon
@@ -165,7 +179,6 @@
 
       </div>
     </section>
-
 
     <!-- EXPERIENCE -->
     <section id="experience" class="py-40 border-t border-black/5 dark:border-white/5">
@@ -290,19 +303,18 @@ export default {
   setup() {
 
     const heroImage = ref(null);
+    const heroLoaded = ref(false);
+
     const form = ref({ name: "", email: "", message: "" });
     const submitted = ref(false);
 
-    // Theme handling
     const theme = ref("system");
 
     const applyTheme = (mode) => {
       const root = document.documentElement;
-      if (mode === "dark") {
-        root.classList.add("dark");
-      } else if (mode === "light") {
-        root.classList.remove("dark");
-      } else {
+      if (mode === "dark") root.classList.add("dark");
+      else if (mode === "light") root.classList.remove("dark");
+      else {
         const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
         root.classList.toggle("dark", prefersDark);
       }
@@ -314,44 +326,40 @@ export default {
       applyTheme(mode);
     };
 
-    // Projects / experience / skills
-    const projects = ref([
-
-    ]);
+    const projects = ref([]);
 
     const experience = ref([
-    {
-      period: "July 2025 - Present",
-      role: "FutureRent - Intermediate Developer",
-      description: "Promoted to Intermediate Developer after demonstrating strong technical leadership. Currently leading development on the main company website (web.futurerent.co.za) and multiple marketing campaigns. Responsible for architecting and implementing complex features while mentoring junior developers.",
-      highlights: ["React.js", "Next.js", "Knex.js", "Team Leadership"]
-    },
-    {
-      period: "July 2024 - July 2025",
-      role: "FutureRent - Junior Developer",
-      description: "Developed in-house applications designed to streamline workflows and enhance productivity across the organization. Contributed to multiple campaigns and worked on the core platform. Gained extensive experience with React, Next.js, and backend integration.",
-      highlights: ["Professional Development", "Full-stack Development", "Team Collaboration"]
-    },
-    {
-      period: "March - July 2024",
-      role: "LC Studio - Web Development Intern",
-      description: "Grew my professional skills as a web development intern at LC Studio. Worked on real client projects while continuing to expand knowledge of modern web development practices.",
-      highlights: ["Professional Development", "Client Work", "Team Collaboration"]
-    },
-    {
-      period: "2023 - 2024",
-      role: "Life Choices Coding Academy",
-      description: "Discovered my passion for frontend development and built fullstack projects while mentoring fellow students. Recognized with multiple awards including Certificate of Excellence, Top Capstone Project, Top Student, and Top Overall Achiever.",
-      highlights: ["Fullstack Projects", "Academic Excellence", "Mentorship"]
-    },
-    {
-      period: "2019",
-      role: "Discovering My Passion - False Bay College",
-      description: "My journey into tech began at False Bay College in 2019, where I first discovered my love for coding. This experience planted the seed for my career path in development.",
-      highlights: ["Foundational Skills", "Career Discovery", "Academic Foundation"]
-    }
-  ]);
-
+      {
+        period: "July 2025 - Present",
+        role: "FutureRent - Intermediate Developer",
+        description: "Promoted to Intermediate Developer after demonstrating strong technical leadership. Currently leading development on the main company website (web.futurerent.co.za) and multiple marketing campaigns. Responsible for architecting and implementing complex features while mentoring junior developers.",
+        highlights: ["React.js", "Next.js", "Knex.js", "Team Leadership"]
+      },
+      {
+        period: "July 2024 - July 2025",
+        role: "FutureRent - Junior Developer",
+        description: "Developed in-house applications designed to streamline workflows and enhance productivity across the organization. Contributed to multiple campaigns and worked on the core platform. Gained extensive experience with React, Next.js, and backend integration.",
+        highlights: ["Professional Development", "Full-stack Development", "Team Collaboration"]
+      },
+      {
+        period: "March - July 2024",
+        role: "LC Studio - Web Development Intern",
+        description: "Grew my professional skills as a web development intern at LC Studio. Worked on real client projects while continuing to expand knowledge of modern web development practices.",
+        highlights: ["Professional Development", "Client Work", "Team Collaboration"]
+      },
+      {
+        period: "2023 - 2024",
+        role: "Life Choices Coding Academy",
+        description: "Discovered my passion for frontend development and built fullstack projects while mentoring fellow students. Recognized with multiple awards including Certificate of Excellence, Top Capstone Project, Top Student, and Top Overall Achiever.",
+        highlights: ["Fullstack Projects", "Academic Excellence", "Mentorship"]
+      },
+      {
+        period: "2019",
+        role: "Discovering My Passion - False Bay College",
+        description: "My journey into tech began at False Bay College in 2019, where I first discovered my love for coding. This experience planted the seed for my career path in development.",
+        highlights: ["Foundational Skills", "Career Discovery", "Academic Foundation"]
+      }
+    ]);
 
     const skills = ref([
       { category: "Frontend", items: ["React", "Next.js", "Vue", "Tailwind"] },
@@ -360,7 +368,6 @@ export default {
       { category: "Mobile", items: ["React Native", "Expo"] }
     ]);
 
-    // Form submission
     const submitForm = async () => {
       const response = await fetch("https://formspree.io/f/xpwrlajv", {
         method: "POST",
@@ -371,14 +378,10 @@ export default {
       if (response.ok) {
         submitted.value = true;
         form.value = { name: "", email: "", message: "" };
-             // Hide message after 3 seconds
-      setTimeout(() => {
-        submitted.value = false;
-      }, 3000);
+        setTimeout(() => submitted.value = false, 3000);
       }
     };
 
-    // Hero reactive parallax
     const scrollOffset = ref(0);
     const mouseX = ref(0);
     const mouseY = ref(0);
@@ -401,10 +404,8 @@ export default {
       const rect = e.currentTarget.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width - 0.5;
       const y = (e.clientY - rect.top) / rect.height - 0.5;
-
-      mouseX.value = x * 10; // intensity
+      mouseX.value = x * 10;
       mouseY.value = y * 10;
-
       updateTransform();
     };
 
@@ -431,12 +432,10 @@ export default {
         .forEach(el => observer.observe(el));
     });
 
-    onUnmounted(() => {
-      window.removeEventListener("scroll", handleScroll);
-    });
+    onUnmounted(() => window.removeEventListener("scroll", handleScroll));
 
     return {
-      heroImage, projects, experience, skills, form, submitted, submitForm,
+      heroImage, heroLoaded, projects, experience, skills, form, submitted, submitForm,
       theme, setTheme, handleHeroMove, resetHero
     };
   }
@@ -461,5 +460,8 @@ html {
 
 .perspective {
   perspective: 1200px;
+}
+img {
+  transition: opacity 0.7s ease, transform 0.7s ease;
 }
 </style>
