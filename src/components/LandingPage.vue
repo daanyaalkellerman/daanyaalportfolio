@@ -169,7 +169,7 @@
 
     <!-- EXPERIENCE -->
     <section id="experience" class="py-40 border-t border-black/5 dark:border-white/5">
-      <div class="max-w-5xl mx-auto px-6">
+      <div class="max-w-7xl mx-auto px-6">
 
         <div class="mb-24 reveal">
           <h3 class="text-5xl font-bold mb-6">Experience</h3>
@@ -180,8 +180,8 @@
 
         <div class="space-y-16">
           <div v-for="(job, index) in experience"
-               :key="index"
-               class="reveal border-l border-black/10 dark:border-white/10 pl-10 relative">
+              :key="index"
+              class="reveal border-l border-black/10 dark:border-white/10 pl-10 relative">
 
             <div class="absolute w-3 h-3 bg-black dark:bg-white rounded-full -left-[7px] top-2"></div>
 
