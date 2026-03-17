@@ -326,7 +326,15 @@ export default {
       applyTheme(mode);
     };
 
-    const projects = ref([]);
+    const projects = ref([
+    {
+      title: "Personal - Asset Management System",
+      description: "This is a personal project I built to manage a company's assets and expenses. It features a Vue.js frontend with a Node.js backend and a MariaDB database. The system allows me to track my investments, expenses, and overall net worth in one place.",
+      stack: ["Vue.js", "MariaDB", "Tailwind", "Firebase","Render", "Node.js"],
+      image: "/ATool.png",
+      live: "https://assetmanagement-6c645.web.app/",
+    }
+    ]);
 
     const experience = ref([
       {
