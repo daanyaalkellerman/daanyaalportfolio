@@ -339,8 +339,8 @@ export default {
     const experience = ref([
       {
         period: "July 2025 - Present",
-        role: "FutureRent - Intermediate Developer",
-        description: "Promoted to Intermediate Developer after demonstrating strong technical leadership. Currently leading development on the main company website (web.futurerent.co.za) and multiple marketing campaigns. Responsible for architecting and implementing complex features while mentoring junior developers.",
+        role: "FutureRent - Mid-Level Developer",
+        description: "Promoted to Mid-Level Developer after demonstrating strong technical leadership. Currently leading development on the main company website (web.futurerent.co.za) and multiple marketing campaigns. Responsible for architecting and implementing complex features while mentoring junior developers.",
         highlights: ["React.js", "Next.js", "Knex.js", "Team Leadership"]
       },
       {
