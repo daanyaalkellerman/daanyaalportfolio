@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "push-build-deploy": "git push && vue-cli-service build && firebase deploy"
   },
   "dependencies": {
     "@tsparticles/engine": "^3.9.1",
