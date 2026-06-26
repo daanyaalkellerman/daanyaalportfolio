@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-Host: daanyaalportfolio.vercel.app
-Sitemap: https://daanyaalportfolio.vercel.app/sitemap.xml
+Host: daanyaal-kellerman.web.app
+Sitemap: https://daanyaal-kellerman.web.app/sitemap.xml
