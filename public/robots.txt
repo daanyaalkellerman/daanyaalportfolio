@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
+Host: daanyaalportfolio.vercel.app
 Sitemap: https://daanyaalportfolio.vercel.app/sitemap.xml

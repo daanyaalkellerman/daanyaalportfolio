@@ -13,9 +13,9 @@
       border-b border-black/5 dark:border-white/5">
       <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
 
-        <h1 class="tracking-widest text-sm md:text-base font-semibold">
+        <span class="tracking-widest text-sm md:text-base font-semibold">
           DAANYAAL KELLERMAN
-        </h1>
+        </span>
 
         <!-- Nav -->
         <nav class="hidden md:flex gap-10 text-xs uppercase tracking-widest text-gray-400 dark:text-gray-400">
@@ -49,12 +49,12 @@
       <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-24 items-center">
 
         <div>
-          <h2 class="text-6xl md:text-7xl font-bold leading-tight mb-10">
+          <h1 class="text-6xl md:text-7xl font-bold leading-tight mb-10">
             Engineering digital
             <span class="block text-gray-500 dark:text-gray-400">
               experiences with impact.
             </span>
-          </h2>
+          </h1>
 
           <p class="text-gray-600 dark:text-gray-400 text-xl max-w-xl mb-12">
             Full-Stack Developer building scalable applications with
@@ -86,6 +86,9 @@
           <img
             ref="heroImage"
             src="/IMG_7706.png"
+            alt="Daanyaal Kellerman portrait"
+            fetchpriority="high"
+            decoding="async"
             @load="heroLoaded = true"
             :class="[
               'rounded-3xl shadow-2xl will-change-transform transition-transform duration-700 ease-out',
@@ -138,6 +141,7 @@
                 <a v-if="project.live"
                   :href="project.live"
                   target="_blank"
+                  rel="noopener noreferrer"
                   class="border border-black/20 dark:border-white/20 px-6 py-2 rounded-full hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition">
                   Live →
                 </a>
@@ -145,6 +149,7 @@
                 <a v-if="project.github"
                   :href="project.github"
                   target="_blank"
+                  rel="noopener noreferrer"
                   class="text-gray-400 dark:text-gray-400 hover:text-black dark:hover:text-white transition">
                   GitHub
                 </a>
@@ -159,6 +164,9 @@
               ></div>
               <img
                 :src="project.image"
+                :alt="`${project.title} project preview`"
+                loading="lazy"
+                decoding="async"
                 @load="project.loaded = true"
                 class="h-80 w-full object-cover rounded-3xl transform group-hover:scale-105 transition duration-700"
                 :class="project.loaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'"
