@@ -369,6 +369,10 @@ export default {
       type: Array,
       required: true,
     },
+    totalSkillItems: {
+      type: Number,
+      required: true,
+    },
     form: {
       type: Object,
       required: true,
