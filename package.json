@@ -16,7 +16,8 @@
     "vue": "^3.2.13",
     "vue-gtag-next": "^1.14.0",
     "vue3-particles": "^2.12.0",
-    "vuex": "^4.0.0"
+    "vuex": "^4.0.0",
+    "yaml": "^2.9.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^5.0.9",
