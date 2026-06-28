@@ -1,6 +1,7 @@
 <template>
   <div>
     <MobileLandingPage
+      v-if="isMobile"
       :projects="projects"
       :experience="experience"
       :skills="skills"
@@ -11,7 +12,8 @@
     />
 
     <div
-      class="hidden md:block bg-white text-black dark:bg-[#0a0a0d] dark:text-white overflow-x-hidden transition-colors duration-500"
+      v-else
+      class="bg-white text-black dark:bg-[#0a0a0d] dark:text-white overflow-x-hidden transition-colors duration-500"
     >
       <div
         class="fixed inset-0 -z-10 bg-gradient-to-b from-gray-100 via-white to-gray-100 dark:from-black dark:via-[#0f172a] dark:to-black transition-colors duration-500"
@@ -69,8 +71,8 @@
             <p
               class="text-gray-600 dark:text-gray-400 text-lg sm:text-xl max-w-xl mb-10 sm:mb-12"
             >
-              Full-Stack Developer building scalable applications with React, Vue,
-              Next.js, Node.js and modern backend architecture.
+              Full-Stack Developer building scalable applications with React, VueJs, PHP,
+              Node.js and modern backend architecture.
             </p>
 
             <div class="flex flex-col sm:flex-row gap-4 sm:gap-8 sm:items-center">
@@ -497,6 +499,7 @@ export default {
   setup() {
     const heroImage = ref(null);
     const heroLoaded = ref(false);
+    const isMobile = ref(false);
 
     const form = ref({ name: "", email: "", message: "" });
     const submitted = ref(false);
@@ -540,8 +543,8 @@ export default {
         period: "July 2025 - Present",
         role: "FutureRent - Mid-Level Developer",
         description:
-          "Promoted to Mid-Level Developer after demonstrating strong technical leadership. Currently leading development on the main company website (web.futurerent.co.za) and multiple marketing campaigns. Responsible for architecting and implementing complex features while mentoring junior developers.",
-        highlights: ["React.js", "Next.js", "Knex.js", "Team Leadership"],
+          "Promoted to Mid-Level Developer after demonstrating strong technical leadership. Currently leading development on the main company website (www.futurerent.co.za) and multiple marketing campaigns. Responsible for architecting and implementing complex features while mentoring junior developers.",
+        highlights: ["React.js", "Vue.js", "Next.js", "Knex.js", "Team Leadership"],
       },
       {
         period: "July 2024 - July 2025",
@@ -625,6 +628,7 @@ export default {
     const scrollOffset = ref(0);
     const mouseX = ref(0);
     const mouseY = ref(0);
+    let mobileQuery = null;
 
     const updateTransform = () => {
       if (!heroImage.value) return;
@@ -655,7 +659,19 @@ export default {
       updateTransform();
     };
 
+    const syncViewportMode = () => {
+      isMobile.value = window.matchMedia("(max-width: 767px)").matches;
+    };
+
     onMounted(() => {
+      syncViewportMode();
+      mobileQuery = window.matchMedia("(max-width: 767px)");
+      if (mobileQuery.addEventListener) {
+        mobileQuery.addEventListener("change", syncViewportMode);
+      } else {
+        mobileQuery.addListener(syncViewportMode);
+      }
+
       applyTheme();
       colorSchemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
       if (colorSchemeQuery.addEventListener) {
@@ -681,6 +697,11 @@ export default {
     onUnmounted(() => {
       window.removeEventListener("scroll", handleScroll);
       window.clearTimeout(themeTransitionTimeout);
+      if (mobileQuery?.removeEventListener) {
+        mobileQuery.removeEventListener("change", syncViewportMode);
+      } else if (mobileQuery?.removeListener) {
+        mobileQuery.removeListener(syncViewportMode);
+      }
       if (colorSchemeQuery?.removeEventListener) {
         colorSchemeQuery.removeEventListener("change", applyTheme);
       } else if (colorSchemeQuery?.removeListener) {
@@ -691,6 +712,7 @@ export default {
     return {
       heroImage,
       heroLoaded,
+      isMobile,
       projects,
       experience,
       skills,
