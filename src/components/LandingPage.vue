@@ -102,7 +102,7 @@
             ></div>
             <img
               ref="heroImage"
-              src="/IMG_7706.png"
+              src="/DK-OTHER.webp"
               alt="Daanyaal Kellerman portrait"
               fetchpriority="high"
               decoding="async"

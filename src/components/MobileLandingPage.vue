@@ -50,7 +50,7 @@
           class="mt-8 overflow-hidden rounded-[2rem] border border-black/10 shadow-2xl dark:border-white/10"
         >
           <img
-            src="/IMG_7706.png"
+            src="/DK-OTHER.webp"
             alt="Daanyaal Kellerman portrait"
             class="h-[26rem] w-full object-cover object-top"
           />

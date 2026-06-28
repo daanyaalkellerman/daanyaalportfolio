@@ -5,6 +5,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import './assets/main.css'
 import VueGtag from 'vue-gtag-next'
+import { initNavigationAwareScrollDepthTracking } from './utils/scrollDepthTracking'
 
 
 const firebaseConfig = {
@@ -35,3 +36,5 @@ app.use(VueGtag, {
 })
 
 app.mount('#app')
+
+initNavigationAwareScrollDepthTracking()
