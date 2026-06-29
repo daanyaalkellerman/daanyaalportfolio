@@ -75,17 +75,17 @@ export function initNavigationAwareScrollDepthTracking(options = {}) {
   }
 
   let destroyScrollDepthTracking = initScrollDepthTracking(options);
-  let currentRoute = getCurrentRoute();
+  let currentRoute = getRouteKey();
 
   function restartTracking() {
     destroyScrollDepthTracking();
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
     destroyScrollDepthTracking = initScrollDepthTracking(options);
-    currentRoute = getCurrentRoute();
+    currentRoute = getRouteKey();
   }
 
   function handleNavigation() {
-    const nextRoute = getCurrentRoute();
+    const nextRoute = getRouteKey();
 
     if (nextRoute === currentRoute) {
       return;
@@ -119,7 +119,7 @@ export function initNavigationAwareScrollDepthTracking(options = {}) {
   };
 }
 
-function getCurrentRoute() {
-  const { pathname, search, hash } = window.location;
-  return `${pathname}${search}${hash}`;
+function getRouteKey() {
+  const { pathname, search } = window.location;
+  return `${pathname}${search}`;
 }
