@@ -312,6 +312,40 @@
           Open to collaborations and innovative builds.
         </p>
 
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a
+            v-for="link in socialLinks"
+            :key="link.label"
+            :href="link.href"
+            target="_blank"
+            rel="noopener noreferrer"
+            :aria-label="link.label"
+            :title="link.label"
+            class="inline-flex h-14 w-14 items-center justify-center rounded-full border border-black/10 bg-black/[0.03] text-gray-700 transition hover:border-black hover:bg-black hover:text-white dark:border-white/10 dark:bg-white/[0.04] dark:text-gray-200 dark:hover:border-white dark:hover:bg-white dark:hover:text-black"
+          >
+            <svg
+              v-if="link.icon === 'linkedin'"
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              class="h-5 w-5 fill-current"
+            >
+              <path
+                d="M6.94 8.5H3.56V20h3.38V8.5ZM5.25 3A2.01 2.01 0 0 0 3.25 5c0 1.1.9 2 2 2s2-.9 2-2c0-1.1-.9-2-2-2ZM20.75 13.06c0-3.47-2.2-4.91-4.57-4.91-1.91 0-3.07 1.05-3.57 1.79V8.5H9.37c.04.95 0 11.5 0 11.5h3.24v-6.42c0-.34.02-.68.13-.92.27-.68.9-1.39 1.95-1.39 1.38 0 1.93 1.05 1.93 2.59V20h3.24v-6.94Z"
+              />
+            </svg>
+            <svg
+              v-else-if="link.icon === 'github'"
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              class="h-5 w-5 fill-current"
+            >
+              <path
+                d="M12 2C6.48 2 2 6.58 2 12.22c0 4.5 2.87 8.32 6.84 9.66.5.1.68-.22.68-.49 0-.24-.01-1.04-.01-1.88-2.78.62-3.37-1.2-3.37-1.2-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.36 1.12 2.94.86.09-.67.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.7 0 0 .84-.28 2.75 1.05A9.3 9.3 0 0 1 12 6.97c.85 0 1.7.12 2.5.36 1.9-1.33 2.74-1.05 2.74-1.05.56 1.4.21 2.44.1 2.7.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.58 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.8 0 .27.18.6.69.49A10.23 10.23 0 0 0 22 12.22C22 6.58 17.52 2 12 2Z"
+              />
+            </svg>
+          </a>
+        </div>
+
         <form @submit.prevent="submitForm" class="mt-8 space-y-4 text-left">
           <input
             v-model="form.name"
@@ -366,6 +400,10 @@ export default {
       required: true,
     },
     skills: {
+      type: Array,
+      required: true,
+    },
+    socialLinks: {
       type: Array,
       required: true,
     },
