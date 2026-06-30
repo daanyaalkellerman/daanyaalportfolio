@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-Host: daanyaal-kellerman.web.app
-Sitemap: https://daanyaal-kellerman.web.app/sitemap.xml
+Host: daanyaalkellerman.co.za
+Sitemap: https://daanyaalkellerman.co.za/sitemap.xml
