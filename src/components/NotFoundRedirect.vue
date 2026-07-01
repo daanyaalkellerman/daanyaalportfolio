@@ -56,7 +56,7 @@
         </div>
 
         <div class="not-found-art mx-auto">
-          <img src="/N-LITE.gif" alt="Glitching monochrome face" class="not-found-gif" />
+          <img :src="notFoundGif" alt="Glitching monochrome face" class="not-found-gif" />
         </div>
       </section>
     </main>
@@ -65,6 +65,7 @@
 
 <script>
 import { computed, onMounted, onUnmounted, ref } from "vue";
+import notFoundGif from "@/assets/images/ui/N-LITE.gif";
 
 export default {
   name: "NotFoundRedirect",
@@ -115,6 +116,7 @@ export default {
     return {
       currentPath,
       isLeaving,
+      notFoundGif,
       progress,
       progressLabel,
       secondsRemaining,

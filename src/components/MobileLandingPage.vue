@@ -39,6 +39,13 @@
             View Work
           </a>
           <a
+            :href="cvUrl"
+            download
+            class="inline-flex items-center justify-center rounded-full border border-black/10 px-6 py-3 text-xs uppercase tracking-[0.25em] text-gray-600 transition hover:border-black hover:text-black dark:border-white/10 dark:text-gray-300 dark:hover:border-white dark:hover:text-white"
+          >
+            Download CV
+          </a>
+          <a
             href="#contact"
             class="inline-flex items-center justify-center rounded-full border border-black/10 px-6 py-3 text-xs uppercase tracking-[0.25em] text-gray-600 transition dark:border-white/10 dark:text-gray-300"
           >
@@ -405,6 +412,10 @@ export default {
     },
     socialLinks: {
       type: Array,
+      required: true,
+    },
+    cvUrl: {
+      type: String,
       required: true,
     },
     totalSkillItems: {

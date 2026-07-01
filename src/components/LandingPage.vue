@@ -6,6 +6,7 @@
       :experience="experience"
       :skills="skills"
       :social-links="socialLinks"
+      :cv-url="cvUrl"
       :total-skill-items="totalSkillItems"
       :form="form"
       :submitted="submitted"
@@ -82,6 +83,13 @@
                 class="inline-flex items-center justify-center border border-black/20 dark:border-white/20 px-8 py-4 rounded-full uppercase tracking-widest text-xs hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition"
               >
                 View Work
+              </a>
+              <a
+                :href="cvUrl"
+                download
+                class="inline-flex items-center justify-center border border-black/10 dark:border-white/10 px-8 py-4 rounded-full uppercase tracking-widest text-xs text-gray-700 hover:border-black hover:text-black dark:text-gray-300 dark:hover:border-white dark:hover:text-white transition"
+              >
+                Download CV
               </a>
               <a
                 href="#contact"
@@ -525,6 +533,7 @@
 <script>
 import { computed, ref, onMounted, onUnmounted } from "vue";
 import MobileLandingPage from "./MobileLandingPage.vue";
+import projectPreview from "@/assets/images/projects/ATool.png";
 
 export default {
   name: "CinematicPortfolio",
@@ -535,6 +544,7 @@ export default {
     const heroImage = ref(null);
     const heroLoaded = ref(false);
     const isMobile = ref(false);
+    const cvUrl = "/Daanyaal_Kellerman_CV.pdf";
 
     const form = ref({ name: "", email: "", message: "" });
     const submitted = ref(false);
@@ -578,7 +588,7 @@ export default {
           "Tracks assets, expenses, investments, and net worth in one workflow.",
           "Built with a dedicated backend and persistent relational data model.",
         ],
-        image: "/ATool.png",
+        image: projectPreview,
         live: "https://assetmanagement-6c645.web.app/",
         github: "",
         loaded: false,
@@ -760,6 +770,7 @@ export default {
       heroImage,
       heroLoaded,
       isMobile,
+      cvUrl,
       projects,
       experience,
       skills,
