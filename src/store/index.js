@@ -30,7 +30,6 @@ export default createStore({
       try{
         axios.get('https://daanyaalkellerman.github.io/vueJSON1/')
         .then ( res => {
-          console.log(res.data.projects)
           context.commit('setProjects' , res.data.projects)
         })
       }catch (e){
